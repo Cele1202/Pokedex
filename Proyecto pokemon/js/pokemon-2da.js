@@ -7,7 +7,7 @@ async function cargarPokemonSegundaGeneracion() {
         let respuesta = await fetch(URL + i);
         let data = await respuesta.json();
         mostrarPokemon(data);
-    }z
+    }
 }
 
 cargarPokemonSegundaGeneracion();

@@ -44,7 +44,7 @@ function mostrarPokemon(poke) {
             </div>
         </div>
     `;
-    listaPokemon2.append(div);
+    listaPokemon3.append(div);
 }
 
 botonesHeader.forEach(boton => boton.addEventListener("click", (event) => {
