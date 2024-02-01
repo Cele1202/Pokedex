@@ -80,11 +80,9 @@ function mostrarDetallesPokemon(poke) {
     nuevaPestana.document.write(contenidoHTML);
 }
 
-<<<<<<< HEAD
-=======
 // Función para obtener los tipos del Pokémon
 function obtenerTipos(poke) {
     return poke.types.map((type) => type.type.name).join(', ');
 }
->>>>>>> d195200d893091fc6db1ad82a2c732139213194c
+
 
