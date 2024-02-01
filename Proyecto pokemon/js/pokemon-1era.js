@@ -10,9 +10,9 @@ for (let i = 1; i <= 151; i++) {
     // fetch(URL + i)
         // .then((response) => response.json())
         // .then(data => mostrarPokemon(data))
-          let repuesta = await fetch(URL + i);
-          data = await repuesta.json();
-          mostrarPokemon(data);
+        let repuesta = await fetch(URL + i);
+        data = await repuesta.json();
+        mostrarPokemon(data);
 
 };};
 
