@@ -74,4 +74,4 @@ function abrirNuevaPestana(poke) {
     window.open(detallePokemonURL, '_blank');
 }
 
-}
+

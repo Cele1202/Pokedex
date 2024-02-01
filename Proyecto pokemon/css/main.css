@@ -114,8 +114,17 @@ main {
 .pokemon-todos {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 1rem;
+    gap: 2rem;
     cursor: pointer;
+   
+}
+.pokemon{
+    transition: .1s;
+}
+.pokemon:hover{
+   transform: scale(1.1)
+        
+    
 }
 
 @media screen and (min-width: 470px) {
