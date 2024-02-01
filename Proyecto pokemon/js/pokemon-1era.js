@@ -7,10 +7,10 @@ async function cargarPokemonPrimeraGeneracion() {
     for (let i = 1; i <= 151; i++) {
         // Hace una solicitud a la API de Pokémon para obtener la información del Pokémon
         let respuesta = await fetch("https://pokeapi.co/api/v2/pokemon/" + i);
-        
+
         // Convierte la respuesta a formato JSON
         let data = await respuesta.json();
-        
+
         // Llama a la función mostrarPokemon para mostrar el Pokémon en la interfaz
         mostrarPokemon(data);
     }
@@ -58,20 +58,33 @@ function mostrarPokemon(poke) {
         </div>
     `;
 
-    // Agrega un evento de clic al div del Pokémon para abrir una nueva pestaña
-    div.addEventListener("click", () => abrirNuevaPestana(poke));
+    // Agrega un evento de clic al div del Pokémon para mostrar detalles en una nueva pestaña
+    div.addEventListener("click", () => mostrarDetallesPokemon(poke));
 
     // Agrega el div al contenedor de la lista de Pokémon
     listaPokemon.append(div);
 }
 
-// Función para abrir una nueva pestaña con detalles del Pokémon
-function abrirNuevaPestana(poke) {
-    // Construye la URL de la API para obtener más detalles del Pokémon
-    const detallePokemonURL = `https://pokeapi.co/api/v2/pokemon/${poke.id}`;
+// Función para mostrar detalles simplificados del Pokémon en una nueva pestaña
+function mostrarDetallesPokemon(poke) {
+    // Construye el contenido HTML con la información del Pokémon
+    const contenidoHTML = `
+        <h2>${poke.name}</h2>
+        <p>Número: #${poke.id}</p>
+        <p>Tipo: ${obtenerTipos(poke)}</p>
+        <img src="${poke.sprites.other["official-artwork"].front_default}" alt="${poke.name}">
+    `;
 
-    // Abre una nueva pestaña con la URL del detalle del Pokémon
-    window.open(detallePokemonURL, '_blank');
+    // Abre una nueva pestaña con el contenido HTML
+    const nuevaPestana = window.open('', '_blank');
+    nuevaPestana.document.write(contenidoHTML);
 }
 
+<<<<<<< HEAD
+=======
+// Función para obtener los tipos del Pokémon
+function obtenerTipos(poke) {
+    return poke.types.map((type) => type.type.name).join(', ');
+}
+>>>>>>> d195200d893091fc6db1ad82a2c732139213194c
 
