@@ -42,6 +42,13 @@ button {
     border: 0;
     border-radius: 0;
 }
+#pokemonSearch{
+border-radius: 100vmax;
+padding: 3px;
+}
+#pokemonSearch:hover{
+    transform: scale(1.1) 
+    }
 
 body {
     min-height: 100vh;
@@ -116,15 +123,12 @@ main {
     grid-template-columns: 1fr;
     gap: 2rem;
     cursor: pointer;
-   
 }
 .pokemon{
     transition: .1s;
 }
 .pokemon:hover{
-   transform: scale(1.1)
-        
-    
+transform: scale(1.1) 
 }
 
 @media screen and (min-width: 470px) {

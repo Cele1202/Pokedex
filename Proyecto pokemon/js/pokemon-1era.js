@@ -86,3 +86,35 @@ function obtenerTipos(poke) {
 }
 
 
+
+
+
+
+//imput
+
+// Selecciona el input de búsqueda
+const inputBusqueda = document.getElementById("pokemonSearch");
+
+// Agrega un evento de escucha al input de búsqueda
+inputBusqueda.addEventListener("input", () => {
+    const valorBusqueda = inputBusqueda.value.toLowerCase();
+    filtrarPokemonPorBusqueda(valorBusqueda);
+});
+
+// Función para filtrar Pokémon por nombre o número de búsqueda
+function filtrarPokemonPorBusqueda(busqueda) {
+    const pokemones = document.querySelectorAll(".pokemon");
+    
+    pokemones.forEach(pokemon => {
+        const nombrePokemon = pokemon.querySelector(".pokemon-nombre").textContent.toLowerCase();
+        const idPokemon = pokemon.querySelector(".pokemon-id").textContent.toLowerCase();
+        
+        if (nombrePokemon.includes(busqueda) || idPokemon.includes(busqueda)) {
+            pokemon.style.display = "block";
+        } else {
+            pokemon.style.display = "none";
+        }
+    });
+}
+
+
