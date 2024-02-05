@@ -1,4 +1,4 @@
-// Selecciona el elemento con el ID "listaPokemon" en el HTML
+// Selecciona el contenedor donde se mostrarán los Pokémon
 const listaPokemon = document.querySelector("#listaPokemon");
 
 // Función asincrónica para cargar los Pokémon de la primera generación
@@ -7,10 +7,8 @@ async function cargarPokemonPrimeraGeneracion() {
     for (let i = 1; i <= 151; i++) {
         // Hace una solicitud a la API de Pokémon para obtener la información del Pokémon
         let respuesta = await fetch("https://pokeapi.co/api/v2/pokemon/" + i);
-
         // Convierte la respuesta a formato JSON
         let data = await respuesta.json();
-
         // Llama a la función mostrarPokemon para mostrar el Pokémon en la interfaz
         mostrarPokemon(data);
     }
@@ -83,20 +81,40 @@ function mostrarDetallesPokemon(poke) {
 // Función para obtener los tipos del Pokémon
 function obtenerTipos(poke) {
     return poke.types.map((type) => type.type.name).join(', ');
-
-
-
 }
-//Al hacer clic al tpo de pokemon te muestra solo los de tipo por ejemplo: fuego.// Selecciona todos los botones de tipo
 
+// Selecciona todos los botones de tipo
 const btnTipos = document.querySelectorAll(".btn-header");
 
 // Agrega eventos de clic a todos los botones de tipo
 btnTipos.forEach(btn => {
     btn.addEventListener("click", () => {
         const tipoSeleccionado = btn.id;
-        filtrarPokemonPorTipo(tipoSeleccionado);
+        if (tipoSeleccionado === 'ver-todos') {
+            // Si se hace clic en "ver todos", muestra todos los Pokémon
+            mostrarTodosLosPokemon();
+        } else {
+            // De lo contrario, filtra los Pokémon por tipo
+            filtrarPokemonPorTipo(tipoSeleccionado);
+        }
     });
+});
+
+// Función para mostrar todos los Pokémon
+function mostrarTodosLosPokemon() {
+    const pokemones = document.querySelectorAll(".pokemon");
+    pokemones.forEach(pokemon => {
+        pokemon.style.display = "block";
+    });
+}
+
+// Selecciona el input de búsqueda
+const inputBusqueda = document.getElementById("pokemonSearch");
+
+// Agrega un evento de escucha al input de búsqueda
+inputBusqueda.addEventListener("input", () => {
+    const valorBusqueda = inputBusqueda.value.toLowerCase();
+    filtrarPokemonPorBusqueda(valorBusqueda);
 });
 
 // Función para filtrar Pokémon por tipo
@@ -115,30 +133,13 @@ function filtrarPokemonPorTipo(tipo) {
         });
 
         // Muestra u oculta el Pokémon según el tipo
-        if (tipoEncontrado) {
+        if (tipoEncontrado || tipo === 'ver-todos') {
             pokemon.style.display = "block";
         } else {
             pokemon.style.display = "none";
         }
     });
 }
-
-
-
-
-
-
-
-//imput
-
-// Selecciona el input de búsqueda
-const inputBusqueda = document.getElementById("pokemonSearch");
-
-// Agrega un evento de escucha al input de búsqueda
-inputBusqueda.addEventListener("input", () => {
-    const valorBusqueda = inputBusqueda.value.toLowerCase();
-    filtrarPokemonPorBusqueda(valorBusqueda);
-});
 
 // Función para filtrar Pokémon por nombre o número de búsqueda
 function filtrarPokemonPorBusqueda(busqueda) {
@@ -155,5 +156,3 @@ function filtrarPokemonPorBusqueda(busqueda) {
         }
     });
 }
-
-
