@@ -85,11 +85,10 @@ function obtenerTipos(poke) {
     return poke.types.map((type) => type.type.name).join(', ');
 
 
-    
-}
 
-//Al hacer clic al tpo de pokemon te muestra solo los de tipo por ejemplo: fuego.
-// Selecciona todos los botones de tipo
+}
+//Al hacer clic al tpo de pokemon te muestra solo los de tipo por ejemplo: fuego.// Selecciona todos los botones de tipo
+
 const btnTipos = document.querySelectorAll(".btn-header");
 
 // Agrega eventos de clic a todos los botones de tipo
