@@ -67,7 +67,6 @@ function mostrarPokemon(poke) {
 function mostrarDetallesPokemon(poke) {
     // Construye el contenido HTML con la información del Pokémon
     const contenidoHTML = 
-
     `
         <h2>${poke.name}</h2>
         <div class="caracteristicas">
@@ -95,6 +94,15 @@ function mostrarDetallesPokemon(poke) {
 
     // Abre una nueva pestaña con el contenido HTML
     const nuevaPestana = window.open('', '_blank');
+    nuevaPestana.document.write(contenidoHTML);
+
+    // Agrega un enlace al archivo de estilos en la nueva pestaña
+    const linkEstilos = document.createElement('link');
+    linkEstilos.rel = 'stylesheet';
+    linkEstilos.href = './css/main.css';  // Reemplaza con la ruta correcta a tu archivo CSS
+    nuevaPestana.document.head.appendChild(linkEstilos);
+
+    // Escribe el contenido HTML en la nueva pestaña
     nuevaPestana.document.write(contenidoHTML);
 }
 
