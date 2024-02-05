@@ -68,12 +68,32 @@ function mostrarPokemon(poke) {
 // Función para mostrar detalles simplificados del Pokémon en una nueva pestaña
 function mostrarDetallesPokemon(poke) {
     // Construye el contenido HTML con la información del Pokémon
-    const contenidoHTML = `
+    const contenidoHTML = 
+
+    `
         <h2>${poke.name}</h2>
-        <p>Número: #${poke.id}</p>
-        <p>Tipo: ${obtenerTipos(poke)}</p>
+        <div class="caracteristicas">
+            <p>Número: #${poke.id}</p>
+            <p>Categoría:${obtenerTipos(poke)}</p>
+            <p>Altura: 1.5m</p>
+            <p>Peso: 5 kg</p>
+        </div>
+        <div class="imagen">
         <img src="${poke.sprites.other["official-artwork"].front_default}" alt="${poke.name}">
-    `;
+        </div>
+        <div class="tipos">
+            <h2>Tipo</h2>
+            <a href="#">Fuego</a>
+            <a href="#">Volador</a>
+        </div>
+        <div class="debilidades">
+            <h2>Debilidad</h2>
+            <a href="#">Eléctrico</a>
+            <a href="#">Planta</a>
+            <a href="#">Agua</a>
+        </div>
+    `
+
 
     // Abre una nueva pestaña con el contenido HTML
     const nuevaPestana = window.open('', '_blank');
