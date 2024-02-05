@@ -83,7 +83,47 @@ function mostrarDetallesPokemon(poke) {
 // Función para obtener los tipos del Pokémon
 function obtenerTipos(poke) {
     return poke.types.map((type) => type.type.name).join(', ');
+
+
+    
 }
+
+//Al hacer clic al tpo de pokemon te muestra solo los de tipo por ejemplo: fuego.
+// Selecciona todos los botones de tipo
+const btnTipos = document.querySelectorAll(".btn-header");
+
+// Agrega eventos de clic a todos los botones de tipo
+btnTipos.forEach(btn => {
+    btn.addEventListener("click", () => {
+        const tipoSeleccionado = btn.id;
+        filtrarPokemonPorTipo(tipoSeleccionado);
+    });
+});
+
+// Función para filtrar Pokémon por tipo
+function filtrarPokemonPorTipo(tipo) {
+    const pokemones = document.querySelectorAll(".pokemon");
+
+    pokemones.forEach(pokemon => {
+        const tiposPokemon = pokemon.querySelectorAll(".tipo");
+        let tipoEncontrado = false;
+
+        // Verifica si el tipo del Pokémon coincide con el tipo seleccionado
+        tiposPokemon.forEach(tipoPokemon => {
+            if (tipoPokemon.textContent.toLowerCase() === tipo) {
+                tipoEncontrado = true;
+            }
+        });
+
+        // Muestra u oculta el Pokémon según el tipo
+        if (tipoEncontrado) {
+            pokemon.style.display = "block";
+        } else {
+            pokemon.style.display = "none";
+        }
+    });
+}
+
 
 
 
