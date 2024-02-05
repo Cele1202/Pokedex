@@ -66,45 +66,61 @@ function mostrarPokemon(poke) {
 // Función para mostrar detalles simplificados del Pokémon en una nueva pestaña
 function mostrarDetallesPokemon(poke) {
     // Construye el contenido HTML con la información del Pokémon
-    const contenidoHTML = 
-    `
+    const contenidoHTML = `
+    <div class="nombre-modal">
         <h2>${poke.name}</h2>
-        <div class="caracteristicas">
+        </div>
+        <div class="caracteristicas-modal">
             <p>Número: #${poke.id}</p>
-            <p>Categoría:${obtenerTipos(poke)}</p>
-            <p>Altura: 1.5m</p>
-            <p>Peso: 5 kg</p>
+            <p>Categoría: ${obtenerTipos(poke)}</p>
+            <p>Altura: ${poke.height}m</p>
+            <p>Peso: ${poke.weight}kg</p>
         </div>
-        <div class="imagen">
-        <img src="${poke.sprites.other["official-artwork"].front_default}" alt="${poke.name}">
+        <div class="imagen-modal">
+            <img src="${poke.sprites.other["official-artwork"].front_default}" alt="${poke.name}">
         </div>
-        <div class="tipos">
+        <div class="tipos-modal">
             <h2>Tipo</h2>
-            <a href="#">Fuego</a>
-            <a href="#">Volador</a>
+            ${poke.types.map(type => `<a href="#">${type.type.name}</a>`).join('\n')}
         </div>
-        <div class="debilidades">
+        <div class="debilidades-modal">
             <h2>Debilidad</h2>
             <a href="#">Eléctrico</a>
             <a href="#">Planta</a>
             <a href="#">Agua</a>
         </div>
-    `
+    `;
 
+    // Crea un contenedor para la ventana modal
+    const modalContainer = document.createElement('div');
+    modalContainer.classList.add('modal-container');
 
-    // Abre una nueva pestaña con el contenido HTML
-    const nuevaPestana = window.open('', '_blank');
-    nuevaPestana.document.write(contenidoHTML);
+    // Agrega el contenido HTML al contenedor de la ventana modal
+    modalContainer.innerHTML = contenidoHTML;
 
-    // Agrega un enlace al archivo de estilos en la nueva pestaña
-    const linkEstilos = document.createElement('link');
-    linkEstilos.rel = 'stylesheet';
-    linkEstilos.href = './css/main.css';  // Reemplaza con la ruta correcta a tu archivo CSS
-    nuevaPestana.document.head.appendChild(linkEstilos);
+    // Agrega el contenedor modal al body del documento
+    document.body.appendChild(modalContainer);
 
-    // Escribe el contenido HTML en la nueva pestaña
-    nuevaPestana.document.write(contenidoHTML);
+    // Aplica estilos adicionales o animaciones según sea necesario
+    // Puedes agregar una clase al contenedor modal para estilizarlo con CSS
+
+    // Puedes cerrar la ventana modal al hacer clic en ella o mediante un botón de cierre
+    modalContainer.addEventListener('click', () => {
+        cerrarModal(modalContainer);
+    });
+
+    // Detén la propagación del evento de clic dentro de la ventana modal
+    modalContainer.children[0].addEventListener('click', (event) => {
+        event.stopPropagation();
+    });
 }
+
+// Función para cerrar la ventana modal
+function cerrarModal(modalContainer) {
+    // Remueve el contenedor modal del DOM
+    document.body.removeChild(modalContainer);
+}
+
 
 // Función para obtener los tipos del Pokémon
 function obtenerTipos(poke) {
