@@ -30,6 +30,7 @@ function mostrarPokemon(poke) {
     } else if (pokeId.length === 2) {
         pokeId = "0" + pokeId;
     }
+    //TERMINAR DE CHEQUEAR EL CODIGO Y PRACTICAR FUNCIÓN FLECHA.
 
     // Crea un nuevo div para el Pokémon y le agrega clases
     const div = document.createElement("div");
