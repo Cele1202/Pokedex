@@ -146,12 +146,16 @@ btnTipos.forEach(btn => {
 });
 
 // Función para mostrar todos los Pokémon
-// function mostrarTodosLosPokemon() {
-//     const pokemones = document.querySelectorAll(".pokemon");
-//     pokemones.forEach(pokemon => {
-//         pokemon.style.display = "block";
-//     });
-// }
+function mostrarTodosLosPokemon() {
+    const pokemones = document.querySelectorAll(".pokemon");
+    pokemones.forEach(pokemon => {
+         pokemon.style.display = "block";
+        //  pokemon.style.background = "blue";
+    });
+}
+
+//revisar porque se necesita esos style para funcionar
+
 
 // Selecciona el input de búsqueda
 const inputBusqueda = document.getElementById("pokemonSearch");
